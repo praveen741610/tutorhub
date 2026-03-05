@@ -53,4 +53,4 @@ jobs:
         run: python -m compileall app tests alembic
 
       - name: Run tests
-        run: pytest -q
+        run: python -m pytest -q
