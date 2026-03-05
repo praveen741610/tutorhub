@@ -41,7 +41,7 @@ def upgrade() -> None:
         sa.Column("subjects", sa.String(length=500), nullable=False, server_default=""),
         sa.Column("languages", sa.String(length=200), nullable=False, server_default=""),
         sa.Column("timezone", sa.String(length=64), nullable=False, server_default="UTC"),
-        sa.Column("is_active", sa.Boolean(), nullable=False, server_default=sa.text("1")),
+        sa.Column("is_active", sa.Boolean(), nullable=False, server_default=sa.text("true")),
         sa.Column("updated_at", sa.DateTime(), nullable=False),
         sa.ForeignKeyConstraint(["user_id"], ["users.id"]),
         sa.PrimaryKeyConstraint("id"),
@@ -54,7 +54,7 @@ def upgrade() -> None:
         sa.Column("tutor_id", sa.Integer(), nullable=False),
         sa.Column("start_time", sa.DateTime(), nullable=False),
         sa.Column("end_time", sa.DateTime(), nullable=False),
-        sa.Column("is_booked", sa.Boolean(), nullable=False, server_default=sa.text("0")),
+        sa.Column("is_booked", sa.Boolean(), nullable=False, server_default=sa.text("false")),
         sa.ForeignKeyConstraint(["tutor_id"], ["users.id"]),
         sa.PrimaryKeyConstraint("id"),
     )
