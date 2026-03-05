@@ -1,0 +1,268 @@
+:root {
+  --bg-1: #eef4f7;
+  --bg-2: #dce8ef;
+  --panel: #ffffff;
+  --ink: #14222d;
+  --muted: #5c6c79;
+  --line: #c9d7e1;
+  --accent: #136f63;
+  --accent-2: #0f5a9e;
+  --danger: #b42318;
+  --ok: #0d894f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 14%, #ffffff 0, transparent 30%),
+    radial-gradient(circle at 86% 20%, #f7fbff 0, transparent 34%),
+    linear-gradient(150deg, var(--bg-1), var(--bg-2));
+}
+
+.wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.card {
+  width: min(920px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: 0 20px 40px rgba(18, 32, 44, 0.12);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  animation: rise 240ms ease-out;
+}
+
+.left {
+  padding: 28px;
+  background:
+    linear-gradient(165deg, rgba(15, 90, 158, 0.95), rgba(19, 111, 99, 0.95)),
+    linear-gradient(#0f5a9e, #136f63);
+  color: #fff;
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px 11px;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+}
+
+.left h1 {
+  margin: 16px 0 10px;
+  font-size: 30px;
+  line-height: 1.15;
+}
+
+.left p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hint-list {
+  margin: 16px 0 0;
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+.hint-list li {
+  margin-bottom: 8px;
+}
+
+.right {
+  padding: 26px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.top-row a {
+  color: var(--accent-2);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.top-row a:hover {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  font-size: 26px;
+}
+
+.subtitle {
+  margin: 4px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #243746;
+}
+
+input,
+select {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid rgba(15, 90, 158, 0.22);
+  border-color: var(--accent-2);
+}
+
+button {
+  margin-top: 4px;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.05);
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.message {
+  display: none;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.message.ok {
+  display: block;
+  background: #ecfdf3;
+  border: 1px solid #b7ebcd;
+  color: var(--ok);
+}
+
+.message.error {
+  display: block;
+  background: #fef3f2;
+  border: 1px solid #f5c2be;
+  color: var(--danger);
+}
+
+.token {
+  margin-top: 12px;
+  display: none;
+}
+
+.token textarea {
+  width: 100%;
+  min-height: 96px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  resize: vertical;
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 12px;
+}
+
+.token.visible {
+  display: block;
+}
+
+.small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.button-row button {
+  flex: 1 1 160px;
+}
+
+.button-secondary {
+  background: #fff;
+  border: 1px solid var(--line);
+  color: #1f3444;
+}
+
+.button-secondary:hover {
+  background: #f6fafc;
+  filter: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .left,
+  .right {
+    padding: 20px;
+  }
+
+  .left h1 {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admissions | Global CBSE Inclusive Academy</title>
+  <link rel="stylesheet" href="/static/web/site.css">
+  <script src="/static/web/site.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Global <span>CBSE Inclusive Academy</span></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation">?</button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/programs">Programs</a></li>
+        <li><a href="/methodology">Methodology</a></li>
+        <li><a href="/faculty">Faculty</a></li>
+        <li><a href="/admissions">Admissions</a></li>
+        <li><a href="/testimonials">Testimonials</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Admission Page</span>
+        <h1>Enroll in a Batch That Fits Your Time Zone</h1>
+        <p>Share your details, pick grade and support needs, then book a trial class before final onboarding.</p>
+      </section>
+
+      <section class="section">
+        <h2>Admission Process</h2>
+        <ul class="list">
+          <li>Step 1: Submit the admission form with student details.</li>
+          <li>Step 2: Attend free counseling + trial class.</li>
+          <li>Step 3: Get class schedule and fee confirmation.</li>
+          <li>Step 4: Start classes with monthly progress reporting.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>Fee Structure (Sample)</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Monthly Fee</th>
+              <th>Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grades 1–5 Foundation</td>
+              <td>USD 140</td>
+              <td>Small Batch</td>
+            </tr>
+            <tr>
+              <td>Grades 6–8 Middle School</td>
+              <td>USD 180</td>
+              <td>Small Batch</td>
+            </tr>
+            <tr>
+              <td>Grades 9–10 Board Prep</td>
+              <td>USD 240</td>
+              <td>Small Batch + Practice</td>
+            </tr>
+            <tr>
+              <td>Autism Support Add-on</td>
+              <td>USD 120</td>
+              <td>One-on-One Specialist</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <h2>Time Zone-Based Batches</h2>
+        <div class="chips">
+          <span class="chip">USA/Canada: 6 PM - 10 PM EST</span>
+          <span class="chip">UK/Europe: 5 PM - 9 PM GMT</span>
+          <span class="chip">Middle East: 5 PM - 9 PM GST</span>
+          <span class="chip">Australia: 4 PM - 8 PM AEST</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Admission Form + Trial Class Booking</h2>
+        <form id="trial-form" class="form-grid">
+          <label class="field">
+            Parent Name
+            <input type="text" required>
+          </label>
+          <label class="field">
+            Email
+            <input type="email" required>
+          </label>
+          <label class="field">
+            Student Grade
+            <select required>
+              <option value="">Select Grade</option>
+              <option>Grade 1-5</option>
+              <option>Grade 6-8</option>
+              <option>Grade 9-10</option>
+              <option>Grade 11-12</option>
+            </select>
+          </label>
+          <label class="field">
+            Country
+            <input type="text" required>
+          </label>
+          <label class="field">
+            Preferred Batch Time Zone
+            <select required>
+              <option value="">Choose Time Zone</option>
+              <option>EST (USA/Canada)</option>
+              <option>GMT (UK/Europe)</option>
+              <option>GST (Middle East)</option>
+              <option>AEST (Australia)</option>
+            </select>
+          </label>
+          <label class="field">
+            Preferred Trial Date
+            <input type="date" required>
+          </label>
+          <label class="field field-full">
+            Notes
+            <textarea rows="4" placeholder="Mention subjects, goals, or autism support needs"></textarea>
+          </label>
+          <div class="field field-full">
+            <button class="btn btn-primary" type="submit">Submit Admission Request</button>
+          </div>
+        </form>
+        <p id="trial-note" class="form-note"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container split">
+      <p>© <span id="year"></span> Global CBSE Inclusive Academy</p>
+      <p>Admissions WhatsApp: +91 90000 12345</p>
+    </div>
+  </footer>
+</body>
+</html>

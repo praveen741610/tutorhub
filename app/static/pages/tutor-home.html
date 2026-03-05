@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tutor Home - TutorHub</title>
+  <link rel="stylesheet" href="/static/web/ui.css">
+  <link rel="stylesheet" href="/static/web/dashboard.css">
+</head>
+<body data-dashboard-role="tutor">
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1 class="title">Tutor Home</h1>
+        <p class="subtitle">You are signed in as a tutor.</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="/docs">Open API Docs</a>
+        <button id="logout-button" class="btn" type="button">Logout</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Quick Actions</h2>
+      <ul class="list">
+        <li>Update your profile via `/tutor/profile`.</li>
+        <li>Add availability via `/tutor/availability`.</li>
+        <li>Review requests via `/tutor/requests`.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <div class="card-top">
+        <h2>My Tutor Profile</h2>
+        <button id="reload-profile-button" class="btn" type="button">Reload Profile</button>
+      </div>
+      <p id="profile-state" class="state">Loading profile...</p>
+
+      <form id="profile-form" class="form-grid">
+        <label class="field">
+          Headline
+          <input id="profile-headline" type="text" maxlength="120" placeholder="e.g. Calculus and Physics Tutor">
+        </label>
+
+        <label class="field">
+          Hourly Rate (USD)
+          <input id="profile-hourly-rate" type="number" min="0" max="1000" step="1" required>
+        </label>
+
+        <label class="field">
+          Subjects (comma-separated)
+          <input id="profile-subjects" type="text" placeholder="math,physics">
+        </label>
+
+        <label class="field">
+          Languages (comma-separated)
+          <input id="profile-languages" type="text" placeholder="english,hindi">
+        </label>
+
+        <label class="field">
+          Timezone
+          <input id="profile-timezone" type="text" placeholder="UTC">
+        </label>
+
+        <label class="field field-span">
+          Bio
+          <textarea id="profile-bio" rows="4" maxlength="2000" placeholder="Introduce your teaching style"></textarea>
+        </label>
+
+        <div class="field-span">
+          <button id="save-profile-button" class="btn primary" type="submit">Save Profile</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Add Availability Slot</h2>
+      <p id="availability-state" class="state">Set a time range and add it as available.</p>
+
+      <form id="availability-form" class="form-grid">
+        <label class="field">
+          Start Time
+          <input id="availability-start" type="datetime-local" required>
+        </label>
+
+        <label class="field">
+          End Time
+          <input id="availability-end" type="datetime-local" required>
+        </label>
+
+        <div class="field-span">
+          <button id="add-availability-button" class="btn primary" type="submit">Add Availability Slot</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-top">
+        <h2>Incoming Booking Requests</h2>
+        <button id="refresh-tutor-requests-button" class="btn" type="button">Refresh</button>
+      </div>
+      <p id="tutor-requests-state" class="state">Loading requests...</p>
+
+      <div class="toolbar">
+        <label class="field field-inline">
+          Status
+          <select id="tutor-status-filter">
+            <option value="all">All</option>
+            <option value="requested">Requested</option>
+            <option value="accepted">Accepted</option>
+            <option value="rejected">Rejected</option>
+            <option value="canceled">Canceled</option>
+          </select>
+        </label>
+
+        <label class="field field-inline">
+          Sort
+          <select id="tutor-sort-order">
+            <option value="start_desc">Start Time (Newest)</option>
+            <option value="start_asc">Start Time (Oldest)</option>
+            <option value="id_desc">ID (Newest)</option>
+            <option value="id_asc">ID (Oldest)</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="tutor-request-stats" class="stats-grid"></div>
+
+      <div class="table-wrap">
+        <table id="tutor-requests-table" class="table" hidden>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Student</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Status</th>
+              <th>Message</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tutor-request-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Current Access Token</h2>
+      <textarea id="token-field" class="token" readonly></textarea>
+    </section>
+  </main>
+
+  <script src="/static/web/ui.js" defer></script>
+  <script src="/static/web/session.js" defer></script>
+  <script src="/static/web/dashboard.js" defer></script>
+</body>
+</html>

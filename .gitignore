@@ -1,0 +1,40 @@
+# Python cache / bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+312/
+
+# Local environment files (keep templates)
+.env
+.env.prod
+!.env.example
+!.env.prod.example
+
+# Local databases / runtime data
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs and temp files
+*.log
+.tmp/
+
+# IDE / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

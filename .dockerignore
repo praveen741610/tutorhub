@@ -1,0 +1,10 @@
+312/
+__pycache__/
+.pytest_cache/
+.tmp/
+*.pyc
+*.pyo
+*.pyd
+*.db
+.env
+.git

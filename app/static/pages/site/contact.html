@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | Global CBSE Inclusive Academy</title>
+  <link rel="stylesheet" href="/static/web/site.css">
+  <script src="/static/web/site.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/">Global <span>CBSE Inclusive Academy</span></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation">?</button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/programs">Programs</a></li>
+        <li><a href="/methodology">Methodology</a></li>
+        <li><a href="/faculty">Faculty</a></li>
+        <li><a href="/admissions">Admissions</a></li>
+        <li><a href="/testimonials">Testimonials</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="hero">
+        <span class="eyebrow">Contact</span>
+        <h1>Talk to Admissions</h1>
+        <p>Reach us through WhatsApp or email, and choose your country-based contact timing for a quick response.</p>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-2">
+          <article class="card">
+            <h3>WhatsApp Number</h3>
+            <p>+91 90000 12345</p>
+          </article>
+          <article class="card">
+            <h3>Email</h3>
+            <p>admissions@globalcbseacademy.com</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Country-Based Contact Timing</h2>
+        <div class="chips">
+          <span class="chip">USA/Canada: 7:00 AM - 11:00 AM EST</span>
+          <span class="chip">UK/Europe: 9:00 AM - 1:00 PM GMT</span>
+          <span class="chip">Middle East: 11:00 AM - 3:00 PM GST</span>
+          <span class="chip">Australia: 2:00 PM - 6:00 PM AEST</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Send a Message</h2>
+        <form id="contact-form" class="form-grid">
+          <label class="field">
+            Parent Name
+            <input type="text" required>
+          </label>
+          <label class="field">
+            Email
+            <input type="email" required>
+          </label>
+          <label class="field">
+            Country
+            <input type="text" required>
+          </label>
+          <label class="field">
+            Preferred Contact Window
+            <select required>
+              <option value="">Select</option>
+              <option>USA/Canada timing</option>
+              <option>UK/Europe timing</option>
+              <option>Middle East timing</option>
+              <option>Australia timing</option>
+            </select>
+          </label>
+          <label class="field field-full">
+            Message
+            <textarea rows="4" required placeholder="Tell us your child grade, subjects, and support needs"></textarea>
+          </label>
+          <div class="field field-full">
+            <button class="btn btn-primary" type="submit">Send Message</button>
+          </div>
+        </form>
+        <p id="contact-note" class="form-note"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container split">
+      <p>© <span id="year"></span> Global CBSE Inclusive Academy</p>
+      <p><a href="/admissions">Go to Admissions</a></p>
+    </div>
+  </footer>
+</body>
+</html>

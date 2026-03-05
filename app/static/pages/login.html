@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TutorHub Login</title>
+  <link rel="stylesheet" href="/static/web/ui.css">
+  <link rel="stylesheet" href="/static/web/auth.css">
+</head>
+<body data-mode="login">
+  <div class="wrap">
+    <section class="card">
+      <aside class="left">
+        <span class="badge">TutorHub</span>
+        <h1>Sign In</h1>
+        <p>Use your account to get your bearer token and access protected API actions.</p>
+        <ul class="hint-list">
+          <li>Email goes in the `username` field for the login API.</li>
+          <li>Your token is saved in browser local storage.</li>
+          <li>Use `/docs` to test secured endpoints with this token.</li>
+        </ul>
+      </aside>
+
+      <div class="right">
+        <div class="top-row">
+          <strong>Account Access</strong>
+          <a href="/register">Need an account?</a>
+        </div>
+        <h2 class="title">Login</h2>
+        <p class="subtitle">POST /auth/login</p>
+
+        <form id="auth-form">
+          <label for="email">
+            Email
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </label>
+
+          <label for="password">
+            Password
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </label>
+
+          <div class="button-row">
+            <button id="submit-button" type="submit">Login</button>
+            <button id="docs-button" class="button-secondary" type="button">Open Docs</button>
+            <button id="logout-button" class="button-secondary" type="button">Logout</button>
+          </div>
+          <div id="message" class="message" aria-live="polite"></div>
+        </form>
+
+        <section id="token-panel" class="token">
+          <p class="small">Access Token</p>
+          <textarea id="token-field" readonly></textarea>
+        </section>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/web/ui.js" defer></script>
+  <script src="/static/web/session.js" defer></script>
+  <script src="/static/web/auth.js" defer></script>
+</body>
+</html>

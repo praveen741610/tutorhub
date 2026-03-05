@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TutorHub API - Offline Docs</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --panel: #ffffff;
+      --text: #1e2933;
+      --muted: #5f6b76;
+      --line: #d8e0e7;
+      --accent: #0f766e;
+      --chip: #e8f3f1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      line-height: 1.45;
+    }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 18px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .search {
+      margin-left: auto;
+      min-width: 220px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 16px;
+      padding: 16px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .panel h2 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .tag-link {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+
+    .tag-link:hover {
+      background: #eef4f9;
+    }
+
+    .tag-section {
+      margin-bottom: 18px;
+    }
+
+    .tag-title {
+      margin: 0 0 8px;
+      font-size: 18px;
+      text-transform: capitalize;
+    }
+
+    .op {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px 12px;
+      margin-bottom: 10px;
+    }
+
+    .op-head {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .method {
+      min-width: 68px;
+      text-align: center;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .path {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 13px;
+      background: #f0f4f7;
+      border-radius: 6px;
+      padding: 3px 7px;
+      color: #26415a;
+    }
+
+    .summary {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 4px 0 0;
+    }
+
+    .chips {
+      margin-top: 7px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      background: var(--chip);
+      color: #10524d;
+      border-radius: 999px;
+      padding: 3px 8px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .loading,
+    .error,
+    .empty {
+      margin: 14px 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .error {
+      color: #9f1239;
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1 id="api-title" class="title">Offline API Docs</h1>
+      <p id="api-subtitle" class="subtitle">Loaded from local OpenAPI schema</p>
+    </div>
+    <input id="search" class="search" type="search" placeholder="Search path, method, summary">
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <h2>Tags</h2>
+      <nav id="tag-nav">
+        <p class="loading">Loading tags...</p>
+      </nav>
+    </aside>
+
+    <section class="panel">
+      <h2>Operations</h2>
+      <div id="ops">
+        <p class="loading">Loading OpenAPI schema...</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const METHOD_PRIORITY = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"];
+
+    function methodRank(method) {
+      const index = METHOD_PRIORITY.indexOf(method);
+      return index === -1 ? METHOD_PRIORITY.length : index;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function buildModel(spec) {
+      const byTag = {};
+      const paths = spec.paths || {};
+
+      Object.keys(paths).forEach((path) => {
+        const pathItem = paths[path] || {};
+        Object.keys(pathItem).forEach((method) => {
+          const methodUpper = method.toUpperCase();
+          const operation = pathItem[method] || {};
+          const tag = (operation.tags && operation.tags[0]) || "default";
+
+          if (!byTag[tag]) {
+            byTag[tag] = [];
+          }
+
+          byTag[tag].push({
+            method: methodUpper,
+            path,
+            summary: operation.summary || "No summary",
+            description: operation.description || "",
+            operationId: operation.operationId || "",
+            hasRequestBody: Boolean(operation.requestBody),
+            isSecured: Boolean(operation.security && operation.security.length),
+            responseCodes: Object.keys(operation.responses || {})
+          });
+        });
+      });
+
+      Object.keys(byTag).forEach((tag) => {
+        byTag[tag].sort((a, b) => {
+          if (a.path === b.path) {
+            return methodRank(a.method) - methodRank(b.method);
+          }
+          return a.path.localeCompare(b.path);
+        });
+      });
+
+      return byTag;
+    }
+
+    function renderTagNav(tags) {
+      const nav = document.getElementById("tag-nav");
+      if (!tags.length) {
+        nav.innerHTML = "<p class='empty'>No tags in schema.</p>";
+        return;
+      }
+
+      nav.innerHTML = tags
+        .map((tag) => `<a class="tag-link" href="#tag-${encodeURIComponent(tag)}">${escapeHtml(tag)}</a>`)
+        .join("");
+    }
+
+    function operationMarkup(op) {
+      const chips = [];
+      if (op.hasRequestBody) {
+        chips.push("<span class='chip'>request body</span>");
+      }
+      if (op.isSecured) {
+        chips.push("<span class='chip'>auth required</span>");
+      }
+      if (op.responseCodes.length) {
+        chips.push(`<span class='chip'>responses: ${escapeHtml(op.responseCodes.join(", "))}</span>`);
+      }
+
+      return `
+        <article class="op">
+          <div class="op-head">
+            <span class="method">${escapeHtml(op.method)}</span>
+            <span class="path">${escapeHtml(op.path)}</span>
+            <span class="summary">${escapeHtml(op.summary)}</span>
+          </div>
+          ${op.description ? `<p class="meta">${escapeHtml(op.description)}</p>` : ""}
+          ${op.operationId ? `<p class="meta">operationId: ${escapeHtml(op.operationId)}</p>` : ""}
+          ${chips.length ? `<div class="chips">${chips.join("")}</div>` : ""}
+        </article>
+      `;
+    }
+
+    function renderOperations(model, query) {
+      const normalizedQuery = query.trim().toLowerCase();
+      const container = document.getElementById("ops");
+      const tags = Object.keys(model).sort((a, b) => a.localeCompare(b));
+      const sections = [];
+
+      tags.forEach((tag) => {
+        const filtered = model[tag].filter((op) => {
+          if (!normalizedQuery) {
+            return true;
+          }
+
+          const searchable = `${op.method} ${op.path} ${op.summary} ${op.description} ${op.operationId}`.toLowerCase();
+          return searchable.includes(normalizedQuery);
+        });
+
+        if (!filtered.length) {
+          return;
+        }
+
+        const opsHtml = filtered.map(operationMarkup).join("");
+        sections.push(`
+          <section id="tag-${encodeURIComponent(tag)}" class="tag-section">
+            <h3 class="tag-title">${escapeHtml(tag)}</h3>
+            ${opsHtml}
+          </section>
+        `);
+      });
+
+      if (!sections.length) {
+        container.innerHTML = "<p class='empty'>No operations match your search.</p>";
+        return;
+      }
+
+      container.innerHTML = sections.join("");
+    }
+
+    async function init() {
+      const ops = document.getElementById("ops");
+      const search = document.getElementById("search");
+      const title = document.getElementById("api-title");
+      const subtitle = document.getElementById("api-subtitle");
+
+      try {
+        const response = await fetch("/openapi.json", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`Failed to load schema: ${response.status}`);
+        }
+
+        const spec = await response.json();
+        const model = buildModel(spec);
+        const tags = Object.keys(model).sort((a, b) => a.localeCompare(b));
+
+        title.textContent = spec.info && spec.info.title ? spec.info.title : "Offline API Docs";
+        subtitle.textContent = spec.info && spec.info.version
+          ? `Version ${spec.info.version} - loaded from /openapi.json`
+          : "Loaded from /openapi.json";
+
+        renderTagNav(tags);
+        renderOperations(model, "");
+
+        search.addEventListener("input", () => {
+          renderOperations(model, search.value);
+        });
+      } catch (error) {
+        const message = error && error.message ? error.message : "Unknown error while loading OpenAPI";
+        ops.innerHTML = `<p class="error">${escapeHtml(message)}</p>`;
+        document.getElementById("tag-nav").innerHTML = "<p class='error'>Could not load tags.</p>";
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

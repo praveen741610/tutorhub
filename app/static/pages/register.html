@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TutorHub Register</title>
+  <link rel="stylesheet" href="/static/web/ui.css">
+  <link rel="stylesheet" href="/static/web/auth.css">
+</head>
+<body data-mode="register">
+  <div class="wrap">
+    <section class="card">
+      <aside class="left">
+        <span class="badge">TutorHub</span>
+        <h1>Create Account</h1>
+        <p>Register a student or tutor profile before signing in.</p>
+        <ul class="hint-list">
+          <li>Role must be `student` or `tutor`.</li>
+          <li>Password must be at least 8 characters.</li>
+          <li>After success, continue to the login page.</li>
+        </ul>
+      </aside>
+
+      <div class="right">
+        <div class="top-row">
+          <strong>New User</strong>
+          <a href="/login">Already registered?</a>
+        </div>
+        <h2 class="title">Register</h2>
+        <p class="subtitle">POST /auth/register</p>
+
+        <form id="auth-form">
+          <label for="name">
+            Full Name
+            <input id="name" name="name" type="text" minlength="2" maxlength="120" autocomplete="name" required>
+          </label>
+
+          <label for="email">
+            Email
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </label>
+
+          <label for="password">
+            Password
+            <input id="password" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+          </label>
+
+          <label for="role">
+            Role
+            <select id="role" name="role" required>
+              <option value="student">student</option>
+              <option value="tutor">tutor</option>
+            </select>
+          </label>
+
+          <button id="submit-button" type="submit">Create Account</button>
+          <div id="message" class="message" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/web/ui.js" defer></script>
+  <script src="/static/web/session.js" defer></script>
+  <script src="/static/web/auth.js" defer></script>
+</body>
+</html>
