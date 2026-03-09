@@ -37,7 +37,12 @@ def site_faculty_page() -> FileResponse:
 
 @router.get("/admissions")
 def site_admissions_page() -> FileResponse:
-    return FileResponse(SITE_PAGES_DIR / "admissions.html")
+    return FileResponse(SITE_PAGES_DIR / "book-trial.html")
+
+
+@router.get("/book-trial")
+def site_book_trial_page() -> FileResponse:
+    return FileResponse(SITE_PAGES_DIR / "book-trial.html")
 
 
 @router.get("/testimonials")

@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Trial | AviAcademy</title>
+  <link rel="stylesheet" href="/static/web/site.css">
+  <script src="/static/web/site.js" defer></script>
+</head>
+<body class="book-trial-page">
+  <header class="site-header trial-header">
+    <div class="container nav-wrap trial-nav-wrap">
+      <a class="brand trial-brand" href="/">Avi<span>Academy</span></a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links trial-nav-links">
+        <li><a href="/programs">Programs</a></li>
+        <li><a href="/methodology">How It Works</a></li>
+        <li><a href="/about">Why AviAcademy</a></li>
+        <li><a href="/testimonials">Testimonials</a></li>
+        <li><a class="trial-nav-cta" href="/book-trial">Book Free Trial</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="book-trial-main">
+    <section class="trial-hero-strip">
+      <div class="container trial-hero-inner">
+        <h1>Book Your Free Trial</h1>
+        <p>Experience a 45-minute live session. No commitment, no credit card. Just your child and a great teacher.</p>
+      </div>
+    </section>
+
+    <section class="trial-card-zone">
+      <div class="container">
+        <section class="trial-card">
+          <form id="trial-form" class="trial-form-grid">
+            <fieldset class="trial-program-block field-full">
+              <legend>Select a Program</legend>
+              <input id="trial-program" type="hidden" value="academic-excellence">
+              <div class="trial-program-grid">
+                <button type="button" class="trial-program-option is-active" data-program-value="academic-excellence" aria-pressed="true">
+                  <span class="trial-program-icon motion-float" aria-hidden="true"><span class="ms-icon">menu_book</span></span>
+                  <span>Academic Excellence</span>
+                </button>
+                <button type="button" class="trial-program-option" data-program-value="chess" aria-pressed="false">
+                  <span class="trial-program-icon motion-pulse" aria-hidden="true"><span class="ms-icon">workspace_premium</span></span>
+                  <span>Chess Academy</span>
+                </button>
+                <button type="button" class="trial-program-option" data-program-value="creative-arts" aria-pressed="false">
+                  <span class="trial-program-icon motion-wiggle" aria-hidden="true"><span class="ms-icon">palette</span></span>
+                  <span>Creative Arts</span>
+                </button>
+                <button type="button" class="trial-program-option" data-program-value="music-academy" aria-pressed="false">
+                  <span class="trial-program-icon motion-float" aria-hidden="true"><span class="ms-icon">music_note</span></span>
+                  <span>Music Academy</span>
+                </button>
+                <button type="button" class="trial-program-option" data-program-value="inclusive-learning" aria-pressed="false">
+                  <span class="trial-program-icon motion-pulse" aria-hidden="true"><span class="ms-icon">favorite</span></span>
+                  <span>Inclusive Learning</span>
+                </button>
+              </div>
+            </fieldset>
+
+            <label class="field">
+              Child&apos;s Name
+              <input id="trial-child-name" type="text" maxlength="120" placeholder="Enter child&apos;s name" required>
+            </label>
+
+            <label class="field">
+              Grade
+              <select id="trial-grade" required>
+                <option value="">Select grade</option>
+                <option value="grade-1">Grade 1</option>
+                <option value="grade-2">Grade 2</option>
+                <option value="grade-3">Grade 3</option>
+                <option value="grade-4">Grade 4</option>
+                <option value="grade-5">Grade 5</option>
+                <option value="grade-6">Grade 6</option>
+                <option value="grade-7">Grade 7</option>
+                <option value="grade-8">Grade 8</option>
+                <option value="grade-9">Grade 9</option>
+                <option value="grade-10">Grade 10</option>
+              </select>
+            </label>
+
+            <label class="field">
+              Parent&apos;s Name
+              <input id="trial-parent-name" type="text" maxlength="120" placeholder="Enter your name" required>
+            </label>
+
+            <label class="field">
+              Email Address
+              <input id="trial-parent-email" type="email" maxlength="160" placeholder="you@email.com" required>
+            </label>
+
+            <label class="field field-full">
+              Phone Number
+              <input id="trial-parent-phone" type="tel" maxlength="25" placeholder="+1 (555) 000-0000" required>
+            </label>
+
+            <label class="field field-full">
+              Preferred Time Slot (US Timezone)
+              <select id="trial-timezone" required>
+                <option value="">Choose a time slot</option>
+                <option value="America/New_York">Eastern Time (ET) - 4:00 PM - 8:00 PM</option>
+                <option value="America/Chicago">Central Time (CT) - 3:00 PM - 7:00 PM</option>
+                <option value="America/Denver">Mountain Time (MT) - 2:00 PM - 6:00 PM</option>
+                <option value="America/Los_Angeles">Pacific Time (PT) - 1:00 PM - 5:00 PM</option>
+              </select>
+            </label>
+
+            <label class="field field-full">
+              Anything we should know? <span class="trial-optional">(optional)</span>
+              <textarea id="trial-notes" rows="3" maxlength="1000" placeholder="E.g. My child has been following CBSE Class 4 Math..."></textarea>
+            </label>
+
+            <div class="field field-full">
+              <button class="trial-submit-btn" type="submit">Book My Free Trial</button>
+            </div>
+
+            <p class="trial-disclaimer field-full">
+              By booking, you agree to our Privacy Policy and consent to AviAcademy contacting you about the trial session.
+            </p>
+            <p id="trial-note" class="form-note trial-note field-full" aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="global-footer">
+    <div class="global-footer-top" aria-hidden="true"></div>
+    <div class="global-footer-main">
+      <div class="container global-footer-grid">
+        <section>
+          <h3 class="global-footer-brand">Avi<span>Academy</span></h3>
+          <p>Bridging Indian heritage and academic excellence for diaspora families in the United States.</p>
+        </section>
+        <section>
+          <h3>Programs</h3>
+          <a href="/programs">Academic Excellence</a>
+          <a href="/programs">Chess Academy</a>
+          <a href="/programs">Creative Arts</a>
+          <a href="/programs">Music Academy</a>
+          <a href="/programs">Inclusive Learning</a>
+        </section>
+        <section>
+          <h3>Company</h3>
+          <a href="/about">About Us</a>
+          <a href="/faculty">Our Teachers</a>
+          <a href="/testimonials">Blog</a>
+          <a href="/contact">Contact</a>
+        </section>
+        <section>
+          <h3>Legal</h3>
+          <a href="/contact">Privacy Policy</a>
+          <a href="/contact">Terms of Service</a>
+          <a href="/contact">COPPA Compliance</a>
+        </section>
+      </div>
+      <div class="container global-footer-bottom">
+        <p>&copy; <span id="year"></span> Avi Academy. All rights reserved. Made with <span class="global-footer-heart">&#10084;</span> for Indian families in the US.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+

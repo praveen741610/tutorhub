@@ -75,6 +75,8 @@
     var trialStart = document.getElementById("trial-slot-start");
     var trialEnd = document.getElementById("trial-slot-end");
     var timezoneInput = document.getElementById("trial-timezone");
+    var trialProgramInput = document.getElementById("trial-program");
+    var trialProgramButtons = trialForm.querySelectorAll("[data-program-value]");
 
     function syncTrialDuration() {
       if (!trialKind || !trialStart || !trialEnd || !trialStart.value) {
@@ -121,6 +123,30 @@
       if (!timezoneInput.value) {
         timezoneInput.value = "America/New_York";
       }
+    }
+
+    if (trialProgramInput && trialProgramButtons.length) {
+      function setProgram(programValue) {
+        trialProgramInput.value = programValue;
+        trialProgramButtons.forEach(function (button) {
+          var isActive = button.getAttribute("data-program-value") === programValue;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      trialProgramButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          setProgram(button.getAttribute("data-program-value"));
+        });
+      });
+
+      setProgram(trialProgramInput.value || trialProgramButtons[0].getAttribute("data-program-value"));
+      trialForm.addEventListener("reset", function () {
+        setTimeout(function () {
+          setProgram(trialProgramInput.defaultValue || trialProgramButtons[0].getAttribute("data-program-value"));
+        }, 0);
+      });
     }
 
     trialForm.addEventListener("submit", async function (event) {
