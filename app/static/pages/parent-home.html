@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parent Home - AviAcademy</title>
+  <link rel="stylesheet" href="/static/web/ui.css">
+  <link rel="stylesheet" href="/static/web/dashboard.css">
+</head>
+<body data-dashboard-role="parent">
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1 class="title">Parent Dashboard</h1>
+        <p class="subtitle">Manage enrollments, trials, and progress in one place.</p>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="/docs">Open API Docs</a>
+        <button id="logout-button" class="btn" type="button">Logout</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2>Book Trial / Consultation</h2>
+      <p id="trial-state" class="state">Select a slot and submit.</p>
+      <form id="trial-form" class="form-grid">
+        <label class="field">
+          Program
+          <select id="trial-program" required>
+            <option value="academic-excellence">Academic Excellence</option>
+            <option value="chess">Chess</option>
+            <option value="creative-arts">Creative Arts</option>
+            <option value="music-academy">Music Academy</option>
+            <option value="inclusive-learning">Inclusive Learning</option>
+          </select>
+        </label>
+        <label class="field">
+          Booking Type
+          <select id="trial-kind" required>
+            <option value="trial">Trial (45 min)</option>
+            <option value="consultation">Parent Consultation (30 min)</option>
+          </select>
+        </label>
+        <label class="field">
+          Child Name
+          <input id="trial-child-name" type="text" maxlength="120" placeholder="Required for trial">
+        </label>
+        <label class="field">
+          Child Grade
+          <input id="trial-child-grade" type="text" maxlength="40" placeholder="e.g. Grade 4">
+        </label>
+        <label class="field">
+          Start Time
+          <input id="trial-start" type="datetime-local" required>
+        </label>
+        <label class="field">
+          End Time
+          <input id="trial-end" type="datetime-local" required>
+        </label>
+        <label class="field field-span">
+          Notes
+          <textarea id="trial-notes" rows="3" maxlength="1000"></textarea>
+        </label>
+        <div class="field-span">
+          <button class="btn primary" type="submit">Book Slot</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Create Enrollment</h2>
+      <p id="enrollment-state" class="state">Choose a program and plan.</p>
+      <form id="enrollment-form" class="form-grid">
+        <label class="field">
+          Program
+          <select id="enrollment-program" required>
+            <option value="academic-excellence">Academic Excellence</option>
+            <option value="chess">Chess</option>
+            <option value="creative-arts">Creative Arts</option>
+            <option value="music-academy">Music Academy</option>
+            <option value="inclusive-learning">Inclusive Learning</option>
+          </select>
+        </label>
+        <label class="field">
+          Plan
+          <select id="enrollment-plan" required>
+            <option value="monthly">Monthly</option>
+            <option value="quarterly">Quarterly</option>
+            <option value="annual">Annual</option>
+          </select>
+        </label>
+        <label class="field">
+          Child Name
+          <input id="enrollment-child-name" type="text" maxlength="120" required>
+        </label>
+        <label class="field">
+          Child Grade
+          <input id="enrollment-child-grade" type="text" maxlength="40" required>
+        </label>
+        <div class="field-span">
+          <button class="btn primary" type="submit">Create Enrollment</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-top">
+        <h2>Dashboard Snapshot</h2>
+        <button id="refresh-dashboard-button" class="btn" type="button">Refresh</button>
+      </div>
+      <p id="dashboard-state" class="state">Loading dashboard...</p>
+      <pre id="dashboard-json" class="token"></pre>
+    </section>
+  </main>
+
+  <script src="/static/web/ui.js" defer></script>
+  <script src="/static/web/session.js" defer></script>
+  <script src="/static/web/parent-dashboard.js" defer></script>
+</body>
+</html>

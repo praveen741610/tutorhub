@@ -66,7 +66,14 @@
   }
 
   function roleHomePath(role) {
-    return String(role || "").toLowerCase() === "tutor" ? "/tutor/home" : "/student/home";
+    var normalized = String(role || "").toLowerCase();
+    if (normalized === "tutor") {
+      return "/tutor/home";
+    }
+    if (normalized === "parent") {
+      return "/parent/home";
+    }
+    return "/student/home";
   }
 
   async function parseResponse(response) {

@@ -28,3 +28,13 @@ class TutorPublic(BaseModel):
 class SlotCreate(BaseModel):
     start_time: datetime
     end_time: datetime
+
+
+class SessionNoteCreate(BaseModel):
+    enrollment_id: int = Field(ge=1)
+    session_start: datetime
+    session_end: datetime
+    attendance_status: str = Field(pattern="^(attended|missed|rescheduled)$")
+    note_summary: str = Field(default="", max_length=1000)
+    homework: str = Field(default="", max_length=1000)
+    meeting_link: str = Field(default="", max_length=255)

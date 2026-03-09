@@ -68,3 +68,8 @@ def student_home_page() -> FileResponse:
 @router.get("/tutor/home")
 def tutor_home_page() -> FileResponse:
     return FileResponse(PAGES_DIR / "tutor-home.html")
+
+
+@router.get("/parent/home")
+def parent_home_page() -> FileResponse:
+    return FileResponse(PAGES_DIR / "parent-home.html")

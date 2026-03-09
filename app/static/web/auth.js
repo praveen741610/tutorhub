@@ -70,11 +70,20 @@
   }
 
   async function doRegister() {
+    var role = document.getElementById("role").value;
+    var coppaConsent = Boolean(document.getElementById("coppa-consent") && document.getElementById("coppa-consent").checked);
+    var communicationOptIn = !document.getElementById("communication-opt-in") || document.getElementById("communication-opt-in").checked;
+    if (role === "parent" && !coppaConsent) {
+      throw new Error("COPPA consent is required for parent registration.");
+    }
+
     var payload = {
       name: document.getElementById("name").value.trim(),
       email: document.getElementById("email").value.trim(),
       password: document.getElementById("password").value,
-      role: document.getElementById("role").value
+      role: role,
+      coppa_consent: coppaConsent,
+      communication_opt_in: communicationOptIn
     };
 
     var response = await fetch("/auth/register", {

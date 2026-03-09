@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TutorHub Register</title>
+  <title>AviAcademy Register</title>
   <link rel="stylesheet" href="/static/web/ui.css">
   <link rel="stylesheet" href="/static/web/auth.css">
 </head>
@@ -11,12 +11,13 @@
   <div class="wrap">
     <section class="card">
       <aside class="left">
-        <span class="badge">TutorHub</span>
+        <span class="badge">AviAcademy</span>
         <h1>Create Account</h1>
-        <p>Register a student or tutor profile before signing in.</p>
+        <p>Register as a parent, student, or tutor before signing in.</p>
         <ul class="hint-list">
-          <li>Role must be `student` or `tutor`.</li>
+          <li>Role can be `parent`, `student`, or `tutor`.</li>
           <li>Password must be at least 8 characters.</li>
+          <li>Parent signup requires COPPA consent before child data can be stored.</li>
           <li>After success, continue to the login page.</li>
         </ul>
       </aside>
@@ -48,9 +49,20 @@
           <label for="role">
             Role
             <select id="role" name="role" required>
+              <option value="parent">parent</option>
               <option value="student">student</option>
               <option value="tutor">tutor</option>
             </select>
+          </label>
+
+          <label for="coppa-consent">
+            <input id="coppa-consent" name="coppa-consent" type="checkbox">
+            I am the parent/guardian and provide COPPA consent to store child learning data.
+          </label>
+
+          <label for="communication-opt-in">
+            <input id="communication-opt-in" name="communication-opt-in" type="checkbox" checked>
+            I agree to receive class reminders and progress communication by email.
           </label>
 
           <button id="submit-button" type="submit">Create Account</button>

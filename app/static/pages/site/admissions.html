@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admissions | Global CBSE Inclusive Academy</title>
+  <title>Admissions | AviAcademy</title>
   <link rel="stylesheet" href="/static/web/site.css">
   <script src="/static/web/site.js" defer></script>
 </head>
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a class="brand" href="/">Global <span>CBSE Inclusive Academy</span></a>
+      <a class="brand" href="/">Avi<span>Academy</span></a>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation">?</button>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
@@ -28,111 +28,81 @@
   <main class="main-content">
     <div class="container">
       <section class="hero">
-        <span class="eyebrow">Admission Page</span>
-        <h1>Enroll in a Batch That Fits Your Time Zone</h1>
-        <p>Share your details, pick grade and support needs, then book a trial class before final onboarding.</p>
+        <span class="eyebrow">Parent Enrollment Flow</span>
+        <h1>Book Free Trial or Inclusive Consultation</h1>
+        <p>Create a parent account, select a timezone-aware slot, attend session, then enroll in a monthly, quarterly, or annual plan.</p>
       </section>
 
       <section class="section">
-        <h2>Admission Process</h2>
+        <h2>Enrollment Steps</h2>
         <ul class="list">
-          <li>Step 1: Submit the admission form with student details.</li>
-          <li>Step 2: Attend free counseling + trial class.</li>
-          <li>Step 3: Get class schedule and fee confirmation.</li>
-          <li>Step 4: Start classes with monthly progress reporting.</li>
+          <li>Create parent account with COPPA consent at <a href="/register">/register</a>.</li>
+          <li>Book either a 45-minute child trial or a 30-minute parent consultation.</li>
+          <li>Receive session link and attend with your chosen educator.</li>
+          <li>Activate subscription and track progress from parent dashboard.</li>
         </ul>
       </section>
 
       <section class="section">
-        <h2>Fee Structure (Sample)</h2>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Program</th>
-              <th>Monthly Fee</th>
-              <th>Format</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Grades 1–5 Foundation</td>
-              <td>USD 140</td>
-              <td>Small Batch</td>
-            </tr>
-            <tr>
-              <td>Grades 6–8 Middle School</td>
-              <td>USD 180</td>
-              <td>Small Batch</td>
-            </tr>
-            <tr>
-              <td>Grades 9–10 Board Prep</td>
-              <td>USD 240</td>
-              <td>Small Batch + Practice</td>
-            </tr>
-            <tr>
-              <td>Autism Support Add-on</td>
-              <td>USD 120</td>
-              <td>One-on-One Specialist</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="section">
-        <h2>Time Zone-Based Batches</h2>
-        <div class="chips">
-          <span class="chip">USA/Canada: 6 PM - 10 PM EST</span>
-          <span class="chip">UK/Europe: 5 PM - 9 PM GMT</span>
-          <span class="chip">Middle East: 5 PM - 9 PM GST</span>
-          <span class="chip">Australia: 4 PM - 8 PM AEST</span>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Admission Form + Trial Class Booking</h2>
+        <h2>Booking Form (Authenticated Parent)</h2>
+        <p class="section-lead">This form calls the live API. Please log in as a parent first.</p>
         <form id="trial-form" class="form-grid">
           <label class="field">
-            Parent Name
-            <input type="text" required>
-          </label>
-          <label class="field">
-            Email
-            <input type="email" required>
-          </label>
-          <label class="field">
-            Student Grade
-            <select required>
-              <option value="">Select Grade</option>
-              <option>Grade 1-5</option>
-              <option>Grade 6-8</option>
-              <option>Grade 9-10</option>
-              <option>Grade 11-12</option>
+            Program
+            <select id="trial-program" required>
+              <option value="academic-excellence">Academic Excellence</option>
+              <option value="chess">Chess</option>
+              <option value="creative-arts">Creative Arts</option>
+              <option value="music-academy">Music Academy</option>
+              <option value="inclusive-learning">Inclusive Learning</option>
             </select>
           </label>
+
           <label class="field">
-            Country
-            <input type="text" required>
-          </label>
-          <label class="field">
-            Preferred Batch Time Zone
-            <select required>
-              <option value="">Choose Time Zone</option>
-              <option>EST (USA/Canada)</option>
-              <option>GMT (UK/Europe)</option>
-              <option>GST (Middle East)</option>
-              <option>AEST (Australia)</option>
+            Booking Type
+            <select id="trial-kind" required>
+              <option value="trial">Trial (45 min)</option>
+              <option value="consultation">Parent Consultation (30 min)</option>
             </select>
           </label>
+
           <label class="field">
-            Preferred Trial Date
-            <input type="date" required>
+            Child Name
+            <input id="trial-child-name" type="text" maxlength="120" placeholder="Required for trial bookings">
           </label>
+
+          <label class="field">
+            Child Grade
+            <input id="trial-child-grade" type="text" maxlength="40" placeholder="e.g. Grade 4">
+          </label>
+
+          <label class="field">
+            Time Zone
+            <input id="trial-timezone" type="text" value="America/New_York" required>
+          </label>
+
+          <label class="field">
+            Start Time
+            <input id="trial-slot-start" type="datetime-local" required>
+          </label>
+
+          <label class="field">
+            End Time
+            <input id="trial-slot-end" type="datetime-local" required>
+          </label>
+
           <label class="field field-full">
             Notes
-            <textarea rows="4" placeholder="Mention subjects, goals, or autism support needs"></textarea>
+            <textarea id="trial-notes" rows="4" maxlength="1000" placeholder="Learning goals, child profile, or consultation focus"></textarea>
           </label>
+
+          <label class="field field-full">
+            <input id="trial-consent" type="checkbox" required>
+            I confirm I am the parent/guardian and consent to storing child learning data under AviAcademy privacy policy.
+          </label>
+
           <div class="field field-full">
-            <button class="btn btn-primary" type="submit">Submit Admission Request</button>
+            <button class="btn btn-primary" type="submit">Book Slot</button>
           </div>
         </form>
         <p id="trial-note" class="form-note"></p>
@@ -142,8 +112,8 @@
 
   <footer class="footer">
     <div class="container split">
-      <p>© <span id="year"></span> Global CBSE Inclusive Academy</p>
-      <p>Admissions WhatsApp: +91 90000 12345</p>
+      <p>Â© <span id="year"></span> AviAcademy</p>
+      <p><a href="/parent/home">Open Parent Dashboard</a></p>
     </div>
   </footer>
 </body>

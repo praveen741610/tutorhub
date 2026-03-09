@@ -6,7 +6,8 @@ from app.core.deps import get_db, require_role
 from app.models.user import User
 from app.models.tutor import TutorProfile, AvailabilitySlot
 from app.models.booking import BookingRequest
-from app.schemas.tutor import TutorProfileOut, TutorProfileUpsert, SlotCreate
+from app.models.program import ProgramEnrollment, SessionNote, TrialBooking
+from app.schemas.tutor import SessionNoteCreate, TutorProfileOut, TutorProfileUpsert, SlotCreate
 
 router = APIRouter(prefix="/tutor", tags=["tutor"])
 
@@ -130,3 +131,86 @@ def reject_request(
     req.status = "rejected"
     db.commit()
     return {"ok": True}
+
+
+@router.get("/schedule")
+def my_schedule(
+    tutor: User = Depends(require_role("tutor")),
+    db: Session = Depends(get_db),
+):
+    booking_rows = db.execute(
+        select(BookingRequest, User.name)
+        .join(User, User.id == BookingRequest.student_id)
+        .where(
+            BookingRequest.tutor_id == tutor.id,
+            BookingRequest.status == "accepted",
+        )
+    ).all()
+
+    trial_rows = db.execute(
+        select(TrialBooking, User.name)
+        .join(User, User.id == TrialBooking.parent_id)
+        .where(
+            TrialBooking.tutor_id == tutor.id,
+            TrialBooking.status == "scheduled",
+        )
+    ).all()
+
+    rows = [
+        {
+            "type": "student_session",
+            "id": row[0].id,
+            "participant_name": row[1],
+            "slot_start": row[0].slot_start,
+            "slot_end": row[0].slot_end,
+            "status": row[0].status,
+            "meeting_link": "",
+            "message": row[0].message,
+        }
+        for row in booking_rows
+    ]
+    rows.extend(
+        [
+            {
+                "type": trial[0].booking_kind,
+                "id": trial[0].id,
+                "participant_name": trial[1],
+                "slot_start": trial[0].slot_start,
+                "slot_end": trial[0].slot_end,
+                "status": trial[0].status,
+                "meeting_link": trial[0].meeting_link,
+                "message": trial[0].notes,
+            }
+            for trial in trial_rows
+        ]
+    )
+    rows.sort(key=lambda item: item["slot_start"])
+    return rows
+
+
+@router.post("/session-notes")
+def submit_session_note(
+    payload: SessionNoteCreate,
+    tutor: User = Depends(require_role("tutor")),
+    db: Session = Depends(get_db),
+):
+    enrollment = db.get(ProgramEnrollment, payload.enrollment_id)
+    if not enrollment:
+        raise HTTPException(status_code=404, detail="Enrollment not found")
+    if payload.session_end <= payload.session_start:
+        raise HTTPException(status_code=400, detail="session_end must be after session_start")
+    note = SessionNote(
+        enrollment_id=enrollment.id,
+        parent_id=enrollment.parent_id,
+        tutor_id=tutor.id,
+        session_start=payload.session_start,
+        session_end=payload.session_end,
+        attendance_status=payload.attendance_status,
+        note_summary=payload.note_summary,
+        homework=payload.homework,
+        meeting_link=payload.meeting_link,
+    )
+    db.add(note)
+    db.commit()
+    db.refresh(note)
+    return {"id": note.id, "ok": True}
