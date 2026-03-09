@@ -5,100 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AviAcademy</title>
   <link rel="stylesheet" href="/static/web/site.css">
+  <link rel="stylesheet" href="/static/web/home.css">
   <script src="/static/web/site.js" defer></script>
 </head>
-<body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="/">Avi<span>Academy</span></a>
+<body class="home-v3">
+  <header class="site-header home-header">
+    <div class="container nav-wrap home-nav-wrap">
+      <a class="brand home-brand" href="/">Avi<span>Academy</span></a>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation">?</button>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
+      <ul class="nav-links home-nav-links">
         <li><a href="/programs">Programs</a></li>
-        <li><a href="/methodology">Methodology</a></li>
-        <li><a href="/faculty">Faculty</a></li>
-        <li><a href="/admissions">Admissions</a></li>
+        <li><a href="/methodology">How It Works</a></li>
+        <li><a href="/about">Why AviAcademy</a></li>
         <li><a href="/testimonials">Testimonials</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a class="home-nav-cta" href="/admissions">Book Free Trial</a></li>
       </ul>
     </div>
   </header>
 
-  <main class="main-content">
-    <div class="container">
-      <section class="hero">
-        <span class="eyebrow">For Indian-Origin Families in the US</span>
-        <h1>CBSE Continuity + Holistic Growth</h1>
-        <p>AviAcademy combines academics, enrichment, and inclusive support through India-based educators with US-timezone sessions.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="/admissions">Book Free Trial</a>
-          <a class="btn btn-accent" href="/programs">Explore 5 Program Verticals</a>
+  <main class="home-main">
+    <section class="home-hero">
+      <div class="container home-hero-inner">
+        <div class="home-hero-copy">
+          <p class="home-kicker">Rated 5.0 by families across the US</p>
+          <h1>Where Indian Heritage Meets <span>Academic Excellence</span></h1>
+          <p>CBSE-aligned academics, chess, music, arts, and inclusive learning delivered live by India-based educators in US-friendly time slots.</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="/admissions">Book a Free Trial</a>
+            <a class="btn home-btn-light" href="/programs">Explore Programs</a>
+          </div>
+          <div class="home-meta">
+            <span>Grades 1-10</span>
+            <span>45-min Trial</span>
+            <span>US Timezone Slots</span>
+          </div>
         </div>
-      </section>
+        <article class="home-hero-card">
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80" alt="Child attending online class">
+        </article>
+      </div>
+    </section>
 
-      <section class="section">
-        <h2>v1 Success Targets</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>50-100 Students</h3>
-            <p>Paid enrollments in the first 8-12 weeks after launch.</p>
+    <section class="home-section home-programs">
+      <div class="container">
+        <p class="home-section-kicker">Our Programs</p>
+        <h2>Five Pillars of Holistic Growth</h2>
+        <p class="home-section-sub">Every vertical is designed to build confidence, continuity, and long-term progress.</p>
+        <div class="home-program-grid">
+          <article class="home-program-card">
+            <h3>Academic Excellence</h3>
+            <p>Math, Science, English, Social Studies, and Hindi aligned to CBSE standards.</p>
+            <div class="home-tags"><span>Grades 1-10</span><span>1:1 + Small Group</span></div>
           </article>
-          <article class="card">
-            <h3>30%+ Conversion</h3>
-            <p>Free-trial-to-paid conversion rate through structured follow-up.</p>
+          <article class="home-program-card">
+            <h3>Chess Academy</h3>
+            <p>Structured chess sessions that strengthen strategy, logic, and focus.</p>
+            <div class="home-tags"><span>Grades 1-10</span><span>Small Group</span></div>
           </article>
-          <article class="card">
-            <h3>70%+ Retention</h3>
-            <p>Month-2 retention through parent communication and progress visibility.</p>
+          <article class="home-program-card">
+            <h3>Creative Arts</h3>
+            <p>Drawing and painting classes that nurture expression and imagination.</p>
+            <div class="home-tags"><span>Grades 1-8</span><span>Small Group</span></div>
+          </article>
+          <article class="home-program-card">
+            <h3>Music Academy</h3>
+            <p>Carnatic, Hindustani, vocal, and keyboard tracks with trained mentors.</p>
+            <div class="home-tags"><span>Grades 1-10</span><span>1:1 + Group</span></div>
+          </article>
+          <article class="home-program-card">
+            <h3>Inclusive Learning</h3>
+            <p>Educational support programs for children with diverse learning needs.</p>
+            <div class="home-tags"><span>Grades 1-8</span><span>1:1 + Small Group</span></div>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section">
-        <h2>Who We Serve</h2>
-        <div class="chips">
-          <span class="chip">US-based Indian diaspora families</span>
-          <span class="chip">Grades 1-10 students</span>
-          <span class="chip">Parents seeking cultural continuity</span>
-          <span class="chip">Children needing inclusive learning support</span>
+    <section class="home-section home-steps">
+      <div class="container">
+        <p class="home-section-kicker">How It Works</p>
+        <h2>Getting Started Is Simple</h2>
+        <div class="home-step-grid">
+          <article class="home-step">
+            <span>01</span>
+            <h3>Book a Free Trial</h3>
+            <p>Choose a program and select a US-friendly slot.</p>
+          </article>
+          <article class="home-step">
+            <span>02</span>
+            <h3>Attend a Live Session</h3>
+            <p>Experience a 45-minute class with your assigned tutor.</p>
+          </article>
+          <article class="home-step">
+            <span>03</span>
+            <h3>Track Progress</h3>
+            <p>Get notes, attendance, and monthly updates in dashboard.</p>
+          </article>
+          <article class="home-step">
+            <span>04</span>
+            <h3>Subscribe & Grow</h3>
+            <p>Continue with monthly, quarterly, or annual plans.</p>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section">
-        <h2>Three Common Parent Journeys</h2>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Relocating Family</h3>
-            <p>Book a math trial, validate curriculum fit, and move to a quarterly academic plan.</p>
+    <section class="home-section home-why">
+      <div class="container">
+        <p class="home-section-kicker">Why AviAcademy</p>
+        <h2>Built for Families Like Yours</h2>
+        <div class="home-why-grid">
+          <article>
+            <h3>CBSE-Aligned Curriculum</h3>
+            <p>Seamless continuity for students transitioning between India and the US.</p>
           </article>
-          <article class="card">
-            <h3>Cultural Continuity</h3>
-            <p>Combine music and arts tracks with flexible monthly subscriptions.</p>
+          <article>
+            <h3>India's Best Teachers</h3>
+            <p>Background-verified mentors trained in child safeguarding and pedagogy.</p>
           </article>
-          <article class="card">
-            <h3>Inclusive Support</h3>
-            <p>Start with a parent consultation before selecting a structured learning format.</p>
+          <article>
+            <h3>US Timezone Scheduling</h3>
+            <p>After-school slots designed for parent and child routines.</p>
+          </article>
+          <article>
+            <h3>COPPA-Compliant & Safe</h3>
+            <p>Parental consent and compliant child-data handling built into onboarding.</p>
           </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section">
-        <h2>Launch Checklist</h2>
-        <ul class="list">
-          <li>Parent signup with COPPA consent before child data storage.</li>
-          <li>Free trial (45 min) and inclusive parent consultation (30 min) booking.</li>
-          <li>Parent dashboard with sessions, history, progress, and billing snapshot.</li>
-          <li>Tutor schedule with post-session notes visible to parents.</li>
-        </ul>
-      </section>
-    </div>
+    <section class="home-section home-testimonials">
+      <div class="container">
+        <p class="home-section-kicker">Testimonials</p>
+        <h2>Loved by Families Across America</h2>
+        <div class="home-testimonial-grid">
+          <article class="home-quote">
+            <p>"Our son transitioned from Hyderabad smoothly. The curriculum felt familiar and rigorous."</p>
+            <strong>Priya Sharma</strong>
+            <span>New Jersey</span>
+          </article>
+          <article class="home-quote">
+            <p>"Music and academics together gave our daughter both cultural connection and confidence."</p>
+            <strong>Rajan Krishnan</strong>
+            <span>California</span>
+          </article>
+          <article class="home-quote">
+            <p>"Inclusive sessions were patient and practical. We saw clear weekly improvement."</p>
+            <strong>Meena Gupta</strong>
+            <span>Texas</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-cta-strip">
+      <div class="container">
+        <h2>Give Your Child the Best of Both Worlds</h2>
+        <p>Book a free trial today. No commitment, no credit card required.</p>
+        <a class="btn home-strip-btn" href="/admissions">Book Your Free Trial</a>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container split">
-      <p>© <span id="year"></span> AviAcademy</p>
-      <p><a href="/register">Create Parent Account</a></p>
+  <footer class="home-footer">
+    <div class="container home-footer-grid">
+      <section>
+        <h3>AviAcademy</h3>
+        <p>Bridging Indian learning roots and global learning standards for families in the US.</p>
+      </section>
+      <section>
+        <h3>Programs</h3>
+        <a href="/programs">Academic Excellence</a>
+        <a href="/programs">Chess</a>
+        <a href="/programs">Creative Arts</a>
+        <a href="/programs">Music Academy</a>
+        <a href="/programs">Inclusive Learning</a>
+      </section>
+      <section>
+        <h3>Company</h3>
+        <a href="/about">About</a>
+        <a href="/faculty">Faculty</a>
+        <a href="/testimonials">Testimonials</a>
+        <a href="/contact">Contact</a>
+      </section>
+      <section>
+        <h3>Legal</h3>
+        <a href="/contact">Privacy Policy</a>
+        <a href="/contact">Terms of Service</a>
+        <a href="/contact">COPPA Compliance</a>
+      </section>
+    </div>
+    <div class="container home-footer-bottom">
+      <p>© <span id="year"></span> AviAcademy. All rights reserved.</p>
     </div>
   </footer>
 </body>
