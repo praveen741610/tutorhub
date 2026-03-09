@@ -98,8 +98,29 @@
       trialStart.addEventListener("change", syncTrialDuration);
     }
 
-    if (timezoneInput && !timezoneInput.value) {
-      timezoneInput.value = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/New_York";
+    if (timezoneInput) {
+      var detectedTz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      if (detectedTz) {
+        var isSelect = String(timezoneInput.tagName || "").toLowerCase() === "select";
+        if (isSelect) {
+          var hasOption = Array.prototype.some.call(
+            timezoneInput.options,
+            function (option) {
+              return option.value === detectedTz;
+            }
+          );
+          if (!hasOption) {
+            var detectedOption = document.createElement("option");
+            detectedOption.value = detectedTz;
+            detectedOption.textContent = detectedTz + " (Detected)";
+            timezoneInput.appendChild(detectedOption);
+          }
+        }
+        timezoneInput.value = detectedTz;
+      }
+      if (!timezoneInput.value) {
+        timezoneInput.value = "America/New_York";
+      }
     }
 
     trialForm.addEventListener("submit", async function (event) {
