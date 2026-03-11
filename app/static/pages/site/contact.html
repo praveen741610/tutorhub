@@ -61,29 +61,29 @@
         <form id="contact-form" class="form-grid">
           <label class="field">
             Parent Name
-            <input type="text" required>
+            <input id="contact-parent-name" type="text" maxlength="120" required>
           </label>
           <label class="field">
             Email
-            <input type="email" required>
+            <input id="contact-email" type="email" maxlength="255" required>
           </label>
           <label class="field">
             Country
-            <input type="text" required>
+            <input id="contact-country" type="text" maxlength="120" required>
           </label>
           <label class="field">
             Preferred Contact Window
-            <select required>
+            <select id="contact-window" required>
               <option value="">Select</option>
-              <option>USA/Canada timing</option>
-              <option>UK/Europe timing</option>
-              <option>Middle East timing</option>
-              <option>Australia timing</option>
+              <option value="usa-canada">USA/Canada timing</option>
+              <option value="uk-europe">UK/Europe timing</option>
+              <option value="middle-east">Middle East timing</option>
+              <option value="australia">Australia timing</option>
             </select>
           </label>
           <label class="field field-full">
             Message
-            <textarea rows="4" required placeholder="Tell us your child grade, subjects, and support needs"></textarea>
+            <textarea id="contact-message" rows="4" maxlength="2000" required placeholder="Tell us your child grade, subjects, and support needs"></textarea>
           </label>
           <div class="field field-full">
             <button class="btn btn-primary" type="submit">Send Message</button>

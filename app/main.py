@@ -13,10 +13,10 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 from app.core.config import settings
-from app.routers import academy, auth, tutors, tutor_dashboard, bookings, web
+from app.routers import academy, auth, bookings, contact_messages, tutor_dashboard, tutors, web
 from app.db.base import Base
 from app.db.session import ACTIVE_DATABASE_URL, engine
-from app.models import booking, program, refresh_session, tutor, user  # noqa: F401
+from app.models import booking, contact_message, program, refresh_session, tutor, user  # noqa: F401
 
 BASE_DIR = Path(__file__).resolve().parent
 STATIC_DIR = BASE_DIR / "static"
@@ -44,6 +44,7 @@ app.include_router(tutors.router)
 app.include_router(tutor_dashboard.router)
 app.include_router(bookings.router)
 app.include_router(academy.router)
+app.include_router(contact_messages.router)
 app.include_router(web.router)
 
 

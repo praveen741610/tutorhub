@@ -222,13 +222,55 @@
 
   var contactForm = document.getElementById("contact-form");
   if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
+    contactForm.addEventListener("submit", async function (event) {
       event.preventDefault();
       var note = document.getElementById("contact-note");
-      if (note) {
-        note.textContent = "Message received. We will respond during your selected country timing window.";
+      if (!note) {
+        return;
       }
-      contactForm.reset();
+
+      var nameInput = document.getElementById("contact-parent-name");
+      var emailInput = document.getElementById("contact-email");
+      var countryInput = document.getElementById("contact-country");
+      var windowInput = document.getElementById("contact-window");
+      var messageInput = document.getElementById("contact-message");
+
+      if (!nameInput || !emailInput || !countryInput || !windowInput || !messageInput) {
+        note.textContent = "Contact form configuration is incomplete.";
+        return;
+      }
+
+      var payload = {
+        parent_name: (nameInput.value || "").trim(),
+        email: (emailInput.value || "").trim(),
+        country: (countryInput.value || "").trim(),
+        preferred_contact_window: (windowInput.options[windowInput.selectedIndex] || {}).text || "",
+        message: (messageInput.value || "").trim(),
+        source_page: window.location.pathname || "/contact"
+      };
+
+      if (!payload.preferred_contact_window || payload.preferred_contact_window === "Select") {
+        note.textContent = "Please choose a preferred contact window.";
+        return;
+      }
+
+      note.textContent = "Sending your message...";
+      try {
+        var response = await fetch("/contact/messages", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        var data = parseResponseText(await response.text());
+        if (!response.ok) {
+          note.textContent = readError(data, "Could not send your message. Please try again.");
+          return;
+        }
+        note.textContent = "Message received. Reference ID: " + data.id + ". We will get back to you soon.";
+        contactForm.reset();
+      } catch (_err) {
+        note.textContent = "Could not send your message. Please try again.";
+      }
     });
   }
 })();

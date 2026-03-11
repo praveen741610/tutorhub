@@ -21,6 +21,7 @@ os.environ["JWT_SECRET"] = "test_secret"
 os.environ["JWT_ALG"] = "HS256"
 os.environ["ACCESS_TOKEN_EXPIRE_MINUTES"] = "5"
 os.environ["REFRESH_TOKEN_EXPIRE_MINUTES"] = "60"
+os.environ["CONTACT_ALERTS_ENABLED"] = "false"
 
 from app.db.base import Base  # noqa: E402
 from app.db.session import engine  # noqa: E402
