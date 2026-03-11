@@ -656,6 +656,96 @@ p {
   }
 }
 
+.book-trial-page .main-content {
+  padding: 40px 0 72px;
+}
+
+.book-trial-page .hero {
+  border: 0;
+  border-radius: 26px;
+  padding: clamp(26px, 4vw, 44px);
+  background: linear-gradient(106deg, #223b6e 0%, #2a3d6b 58%, #6b4f48 100%);
+  box-shadow: 0 20px 34px rgba(27, 41, 72, 0.26);
+}
+
+.book-trial-page .hero h1 {
+  color: #ffffff;
+}
+
+.book-trial-page .hero p {
+  color: #d4e0f7;
+}
+
+.book-trial-page .eyebrow {
+  color: #fff3de;
+  background: rgba(240, 145, 61, 0.26);
+}
+
+.book-trial-page .section {
+  border: 1px solid #d8d3c9;
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(25, 36, 56, 0.11);
+  background: #ffffff;
+}
+
+.book-trial-page .section h2 {
+  color: #21365b;
+}
+
+.book-trial-page .section-lead {
+  color: #50617b;
+}
+
+.book-trial-page .card {
+  border: 1px solid #d7d1c7;
+  border-radius: 12px;
+  background: #fffdf9;
+  box-shadow: 0 10px 18px rgba(32, 46, 74, 0.08);
+}
+
+.book-trial-page .card h3 {
+  color: #1f395e;
+}
+
+.book-trial-page .card p {
+  color: #55657f;
+}
+
+.book-trial-page .chip {
+  border: 1px solid #f1c7a3;
+  background: #fff1e3;
+  color: #a5531b;
+}
+
+.book-trial-page .list {
+  color: #2f4366;
+}
+
+.book-trial-page .table {
+  border: 1px solid #d7d1c7;
+}
+
+.book-trial-page .table th {
+  background: #f3efe6;
+  color: #1f3759;
+}
+
+.book-trial-page .table td {
+  color: #445a78;
+}
+
+.book-trial-page .btn-primary {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(90deg, #f0913d, #de6d1f);
+}
+
+.book-trial-page .btn-accent {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(90deg, #2ab7a8, #198f84);
+}
+
 .global-footer {
   margin-top: 36px;
   background: #1e335c;
