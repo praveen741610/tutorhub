@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     REFRESH_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 14  # 14 days
 
     CONTACT_ALERTS_ENABLED: bool = True
+    CONTACT_ALERT_EMAIL_ENABLED: bool = True
+    CONTACT_ALERT_WHATSAPP_ENABLED: bool = False
     CONTACT_ALERT_EMAIL_TO: str = "praveenkumarraacharla@gmail.com"
     CONTACT_ALERT_WHATSAPP_TO: str = "+917416106610"
 

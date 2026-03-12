@@ -100,17 +100,28 @@ def send_contact_alerts(message: ContactMessage) -> None:
     if not settings.CONTACT_ALERTS_ENABLED:
         return
 
+    attempted = 0
+    delivered = 0
     errors: list[str] = []
 
-    try:
-        send_email_contact_alert(message)
-    except Exception as exc:
-        errors.append(f"email: {exc}")
+    if settings.CONTACT_ALERT_EMAIL_ENABLED:
+        attempted += 1
+        try:
+            send_email_contact_alert(message)
+            delivered += 1
+        except Exception as exc:
+            errors.append(f"email: {exc}")
 
-    try:
-        send_whatsapp_contact_alert(message)
-    except Exception as exc:
-        errors.append(f"whatsapp: {exc}")
+    if settings.CONTACT_ALERT_WHATSAPP_ENABLED:
+        attempted += 1
+        try:
+            send_whatsapp_contact_alert(message)
+            delivered += 1
+        except Exception as exc:
+            errors.append(f"whatsapp: {exc}")
 
-    if errors:
+    if attempted == 0:
+        return
+
+    if delivered == 0:
         raise RuntimeError("; ".join(errors))
