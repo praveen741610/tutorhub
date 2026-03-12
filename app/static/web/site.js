@@ -14,6 +14,18 @@
     if (!payload) {
       return fallback;
     }
+    if (payload.error && Array.isArray(payload.error.details) && payload.error.details.length) {
+      var detailText = payload.error.details.map(function (item) {
+        if (typeof item === "string") {
+          return item;
+        }
+        return item.msg || JSON.stringify(item);
+      }).join("; ");
+      if (payload.error.message) {
+        return payload.error.message + ": " + detailText;
+      }
+      return detailText;
+    }
     if (payload.error && payload.error.message) {
       return payload.error.message;
     }
